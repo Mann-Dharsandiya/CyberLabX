@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>CyberLabX — Security Intelligence Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&family=Orbitron:wght@400;600;700;900&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+<!-- ==================== NOISE OVERLAY ==================== -->
+<div class="noise-overlay"></div>
+<div class="scan-line"></div>
+
+<!-- ==================== LOGIN PAGE ==================== -->
+<div id="page-login" class="page active">
+  <div class="auth-bg">
+    <div class="grid-lines"></div>
+    <div class="auth-glow"></div>
+  </div>
+  <div class="auth-container">
+    <div class="auth-logo">
+      <div class="logo-hex">
+        <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <polygon points="30,2 56,16 56,44 30,58 4,44 4,16" stroke="#00ff88" stroke-width="1.5" fill="none"/>
+          <polygon points="30,10 50,21 50,39 30,50 10,39 10,21" stroke="#00ff88" stroke-width="0.5" fill="rgba(0,255,136,0.05)"/>
+          <text x="30" y="36" text-anchor="middle" fill="#00ff88" font-family="Orbitron" font-size="14" font-weight="700">CX</text>
+        </svg>
+      </div>
+      <div class="logo-text">
+        <span class="logo-main">CyberLabX</span>
+        <span class="logo-sub">SECURITY INTELLIGENCE PLATFORM</span>
+      </div>
+    </div>
+
+    <div class="auth-card">
+      <div class="auth-tabs">
+        <button class="auth-tab active" data-tab="login">LOGIN</button>
+        <button class="auth-tab" data-tab="register">REGISTER</button>
+      </div>
+
+      <!-- Login Form -->
+      <form class="auth-form" id="login-form" data-tab-content="login">
+        <div class="terminal-line">
+          <span class="prompt">$</span>
+          <span class="cmd">authenticate --user</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">EMAIL / USERNAME</label>
+          <div class="input-wrapper">
+            <span class="input-icon">◈</span>
+            <input type="text" class="form-input" id="login-email" placeholder="operator@cyberlabx.io" autocomplete="off"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">PASSWORD</label>
+          <div class="input-wrapper">
+            <span class="input-icon">◉</span>
+            <input type="password" class="form-input" id="login-password" placeholder="••••••••••••"/>
+            <button type="button" class="toggle-pass" onclick="togglePass('login-password', this)">SHOW</button>
+          </div>
+        </div>
+        <div class="form-row">
+          <label class="checkbox-label">
+            <input type="checkbox" id="remember-me"/>
+            <span class="checkbox-custom"></span>
+            REMEMBER SESSION
+          </label>
+          <a href="#" class="form-link">FORGOT KEY?</a>
+        </div>
+        <div class="form-error" id="login-error"></div>
+        <button type="submit" class="btn-primary" id="login-btn">
+          <span class="btn-text">INITIATE ACCESS</span>
+          <span class="btn-loader hidden">▓▓▒▒░░</span>
+        </button>
+        <div class="auth-divider"><span>OR CONTINUE WITH</span></div>
+        <div class="oauth-row">
+          <button type="button" class="btn-oauth" onclick="oauthLogin('google')">
+            <svg width="18" height="18" viewBox="0 0 24 24"><path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/><path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/><path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/><path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/></svg>
+            GOOGLE
+          </button>
+          <button type="button" class="btn-oauth" onclick="oauthLogin('github')">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            GITHUB
+          </button>
+        </div>
+      </form>
+
+      <!-- Register Form -->
+      <form class="auth-form hidden" id="register-form" data-tab-content="register">
+        <div class="terminal-line">
+          <span class="prompt">$</span>
+          <span class="cmd">create --new-operator</span>
+        </div>
+        <div class="form-row-2">
+          <div class="form-group">
+            <label class="form-label">FIRST NAME</label>
+            <div class="input-wrapper">
+              <span class="input-icon">▸</span>
+              <input type="text" class="form-input" placeholder="John"/>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label">LAST NAME</label>
+            <div class="input-wrapper">
+              <span class="input-icon">▸</span>
+              <input type="text" class="form-input" placeholder="Doe"/>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">EMAIL</label>
+          <div class="input-wrapper">
+            <span class="input-icon">◈</span>
+            <input type="email" class="form-input" placeholder="operator@cyberlabx.io"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">USERNAME</label>
+          <div class="input-wrapper">
+            <span class="input-icon">◉</span>
+            <input type="text" class="form-input" placeholder="gh0st_0p3r4t0r"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">PASSWORD</label>
+          <div class="input-wrapper">
+            <span class="input-icon">◉</span>
+            <input type="password" class="form-input" id="reg-password" placeholder="Min. 8 characters"/>
+            <button type="button" class="toggle-pass" onclick="togglePass('reg-password', this)">SHOW</button>
+          </div>
+          <div class="password-strength" id="pwd-strength">
+            <div class="strength-bar"><div class="strength-fill" id="strength-fill"></div></div>
+            <span class="strength-label" id="strength-label">STRENGTH: —</span>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">CONFIRM PASSWORD</label>
+          <div class="input-wrapper">
+            <span class="input-icon">◉</span>
+            <input type="password" class="form-input" placeholder="••••••••••••"/>
+          </div>
+        </div>
+        <label class="checkbox-label" style="margin-bottom:16px">
+          <input type="checkbox"/>
+          <span class="checkbox-custom"></span>
+          I AGREE TO THE <a href="#" class="form-link">TERMS OF USE</a>
+        </label>
+        <div class="form-error" id="register-error"></div>
+        <button type="submit" class="btn-primary">
+          <span class="btn-text">CREATE OPERATOR ACCOUNT</span>
+        </button>
+      </form>
+    </div>
+
+    <div class="auth-footer">
+      <span>SECURE CONNECTION ◈ TLS 1.3</span>
+      <span>©2024 CYBERLABX</span>
+    </div>
+  </div>
+</div>
+
+<!-- ==================== DASHBOARD PAGE ==================== -->
+<div id="page-dashboard" class="page">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="s-logo-hex">
+        <svg viewBox="0 0 40 40" fill="none"><polygon points="20,2 37,11 37,29 20,38 3,29 3,11" stroke="#00ff88" stroke-width="1.2" fill="none"/><text x="20" y="25" text-anchor="middle" fill="#00ff88" font-family="Orbitron" font-size="9" font-weight="700">CX</text></svg>
+      </div>
+      <span class="s-logo-text">CyberLabX</span>
+    </div>
+
+    <div class="sidebar-user">
+      <div class="user-avatar">GH</div>
+      <div class="user-info">
+        <span class="user-name">gh0st_op3r</span>
+        <span class="user-role">RED TEAM ANALYST</span>
+      </div>
+      <div class="user-status-dot"></div>
+    </div>
+
+    <nav class="sidebar-nav">
+      <div class="nav-section-label">MAIN</div>
+      <a href="#" class="nav-item active" data-page="overview" onclick="navigate('overview',this)">
+        <span class="nav-icon">◈</span><span>OVERVIEW</span>
+        <span class="nav-badge">3</span>
+      </a>
+      <a href="#" class="nav-item" data-page="tools" onclick="navigate('tools',this)">
+        <span class="nav-icon">⬡</span><span>TOOLS</span>
+      </a>
+      <a href="#" class="nav-item" data-page="sessions" onclick="navigate('sessions',this)">
+        <span class="nav-icon">◉</span><span>SESSIONS</span>
+        <span class="nav-badge live">LIVE</span>
+      </a>
+      <a href="#" class="nav-item" data-page="reports" onclick="navigate('reports',this)">
+        <span class="nav-icon">▣</span><span>REPORTS</span>
+      </a>
+
+      <div class="nav-section-label">SECURITY TOOLS</div>
+      <a href="#" class="nav-item" data-page="burpsuite" onclick="navigate('burpsuite',this)">
+        <span class="nav-icon tool-icon burp">B</span><span>BURP SUITE</span>
+      </a>
+      <a href="#" class="nav-item" data-page="wireshark" onclick="navigate('wireshark',this)">
+        <span class="nav-icon tool-icon wire">W</span><span>WIRESHARK</span>
+      </a>
+      <a href="#" class="nav-item" data-page="nmap" onclick="navigate('nmap',this)">
+        <span class="nav-icon tool-icon nmp">N</span><span>NMAP</span>
+      </a>
+      <a href="#" class="nav-item" data-page="metasploit" onclick="navigate('metasploit',this)">
+        <span class="nav-icon tool-icon meta">M</span><span>METASPLOIT</span>
+      </a>
+
+      <div class="nav-section-label">ACCOUNT</div>
+      <a href="#" class="nav-item" data-page="settings" onclick="navigate('settings',this)">
+        <span class="nav-icon">⊙</span><span>SETTINGS</span>
+      </a>
+      <a href="#" class="nav-item" onclick="logout()">
+        <span class="nav-icon danger">⏻</span><span class="danger">LOGOUT</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="system-status">
+        <div class="status-dot green"></div>
+        <span>ALL SYSTEMS NOMINAL</span>
+      </div>
+      <div class="version-tag">v2.4.1 — STABLE</div>
+    </div>
+  </aside>
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content" id="main-content">
+
+    <!-- TOP BAR -->
+    <header class="topbar">
+      <div class="topbar-left">
+        <button class="sidebar-toggle" onclick="toggleSidebar()">☰</button>
+        <div class="breadcrumb" id="breadcrumb">
+          <span>CYBERLABX</span>
+          <span class="bc-sep">›</span>
+          <span id="bc-current">OVERVIEW</span>
+        </div>
+      </div>
+      <div class="topbar-right">
+        <div class="search-bar">
+          <span class="search-icon">⌕</span>
+          <input type="text" class="search-input" placeholder="Search tools, reports, sessions..."/>
+          <kbd class="kbd">⌘K</kbd>
+        </div>
+        <button class="icon-btn" title="Notifications">
+          <span>◎</span>
+          <div class="notif-dot"></div>
+        </button>
+        <button class="icon-btn" title="Terminal">
+          <span>&gt;_</span>
+        </button>
+        <div class="topbar-avatar" onclick="navigate('settings', null)">GH</div>
+      </div>
+    </header>
+
+    <!-- PAGE: OVERVIEW -->
+    <section class="dash-section active" id="section-overview">
+      <div class="section-header">
+        <div>
+          <h1 class="section-title">COMMAND OVERVIEW</h1>
+          <p class="section-sub">Monday, Dec 16 · Session active 2h 14m · Last scan: 4 min ago</p>
+        </div>
+        <button class="btn-primary sm" onclick="navigate('tools',null)">+ NEW SCAN</button>
+      </div>
+
+      <!-- STAT CARDS -->
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-icon red">⚠</div>
+          <div class="stat-info">
+            <span class="stat-number" data-count="23">0</span>
+            <span class="stat-label">VULNERABILITIES</span>
+          </div>
+          <div class="stat-trend up">↑ 4 new</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon amber">◉</div>
+          <div class="stat-info">
+            <span class="stat-number" data-count="7">0</span>
+            <span class="stat-label">ACTIVE SESSIONS</span>
+          </div>
+          <div class="stat-trend neutral">→ stable</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon green">✓</div>
+          <div class="stat-info">
+            <span class="stat-number" data-count="142">0</span>
+            <span class="stat-label">SCANS COMPLETED</span>
+          </div>
+          <div class="stat-trend down">↓ 3 today</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon blue">◈</div>
+          <div class="stat-info">
+            <span class="stat-number" data-count="4">0</span>
+            <span class="stat-label">TOOLS RUNNING</span>
+          </div>
+          <div class="stat-trend up">↑ all active</div>
+        </div>
+      </div>
+
+      <!-- MAIN GRID -->
+      <div class="dash-grid">
+        <!-- Activity Feed -->
+        <div class="dash-card wide">
+          <div class="card-header">
+            <span class="card-title">THREAT ACTIVITY FEED</span>
+            <div class="card-actions">
+              <span class="live-badge">● LIVE</span>
+              <button class="card-btn">FILTER</button>
+            </div>
+          </div>
+          <div class="activity-feed" id="activity-feed">
+            <div class="activity-item critical">
+              <span class="act-time">14:32:01</span>
+              <span class="act-severity crit">CRITICAL</span>
+              <span class="act-msg">SQLi detected at /api/users — Burp Suite</span>
+              <span class="act-ip">192.168.1.104</span>
+            </div>
+            <div class="activity-item warning">
+              <span class="act-time">14:31:48</span>
+              <span class="act-severity warn">WARNING</span>
+              <span class="act-msg">Suspicious packet flood — Wireshark monitor</span>
+              <span class="act-ip">10.0.0.23</span>
+            </div>
+            <div class="activity-item info">
+              <span class="act-time">14:31:12</span>
+              <span class="act-severity info">INFO</span>
+              <span class="act-msg">Nmap scan completed — 254 hosts scanned</span>
+              <span class="act-ip">10.0.0.0/24</span>
+            </div>
+            <div class="activity-item critical">
+              <span class="act-time">14:30:55</span>
+              <span class="act-severity crit">CRITICAL</span>
+              <span class="act-msg">XSS payload executed on target — Burp Suite</span>
+              <span class="act-ip">192.168.1.100</span>
+            </div>
+            <div class="activity-item warning">
+              <span class="act-time">14:30:22</span>
+              <span class="act-severity warn">WARNING</span>
+              <span class="act-msg">Metasploit exploit attempt — ms17_010_eternalblue</span>
+              <span class="act-ip">10.0.0.45</span>
+            </div>
+            <div class="activity-item info">
+              <span class="act-time">14:29:50</span>
+              <span class="act-severity info">INFO</span>
+              <span class="act-msg">New session opened — operator login from 45.33.32.156</span>
+              <span class="act-ip">45.33.32.156</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mini terminal -->
+        <div class="dash-card">
+          <div class="card-header">
+            <span class="card-title">QUICK TERMINAL</span>
+            <button class="card-btn">FULLSCREEN</button>
+          </div>
+          <div class="mini-terminal" id="mini-terminal">
+            <div class="term-output" id="term-output">
+              <div class="term-line"><span class="term-prompt">root@cyberlabx:~#</span> system status</div>
+              <div class="term-line result">◈ All 4 tools operational</div>
+              <div class="term-line result">◈ Network monitoring: ACTIVE</div>
+              <div class="term-line result">◈ Threat detection: ENABLED</div>
+              <div class="term-line"><span class="term-prompt">root@cyberlabx:~#</span> <span class="term-cursor">█</span></div>
+            </div>
+            <div class="term-input-row">
+              <span class="term-prompt-inline">$</span>
+              <input type="text" class="term-input" id="term-input" placeholder="enter command..."/>
+            </div>
+          </div>
+        </div>
+
+        <!-- Vuln Chart -->
+        <div class="dash-card">
+          <div class="card-header">
+            <span class="card-title">VULNERABILITY BREAKDOWN</span>
+          </div>
+          <div class="vuln-chart">
+            <div class="vuln-bar-group">
+              <div class="vuln-label">CRITICAL</div>
+              <div class="vuln-bar-wrap"><div class="vuln-bar crit" style="width:35%"><span>8</span></div></div>
+            </div>
+            <div class="vuln-bar-group">
+              <div class="vuln-label">HIGH</div>
+              <div class="vuln-bar-wrap"><div class="vuln-bar high" style="width:55%"><span>12</span></div></div>
+            </div>
+            <div class="vuln-bar-group">
+              <div class="vuln-label">MEDIUM</div>
+              <div class="vuln-bar-wrap"><div class="vuln-bar med" style="width:70%"><span>18</span></div></div>
+            </div>
+            <div class="vuln-bar-group">
+              <div class="vuln-label">LOW</div>
+              <div class="vuln-bar-wrap"><div class="vuln-bar low" style="width:45%"><span>9</span></div></div>
+            </div>
+            <div class="vuln-bar-group">
+              <div class="vuln-label">INFO</div>
+              <div class="vuln-bar-wrap"><div class="vuln-bar info-b" style="width:80%"><span>24</span></div></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tools Status -->
+        <div class="dash-card wide">
+          <div class="card-header">
+            <span class="card-title">TOOLS STATUS</span>
+            <button class="card-btn" onclick="navigate('tools',null)">MANAGE ALL →</button>
+          </div>
+          <div class="tools-status-grid">
+            <div class="tool-status-card" onclick="navigate('burpsuite',null)">
+              <div class="ts-icon burp">B</div>
+              <div class="ts-info">
+                <span class="ts-name">BURP SUITE</span>
+                <span class="ts-desc">Web proxy & vulnerability scanner</span>
+              </div>
+              <div class="ts-right">
+                <div class="ts-status running">● RUNNING</div>
+                <div class="ts-meta">Port 8080 · 12 findings</div>
+              </div>
+            </div>
+            <div class="tool-status-card" onclick="navigate('wireshark',null)">
+              <div class="ts-icon wire">W</div>
+              <div class="ts-info">
+                <span class="ts-name">WIRESHARK</span>
+                <span class="ts-desc">Network packet analyzer</span>
+              </div>
+              <div class="ts-right">
+                <div class="ts-status running">● RUNNING</div>
+                <div class="ts-meta">eth0 · 4.2k packets</div>
+              </div>
+            </div>
+            <div class="tool-status-card" onclick="navigate('nmap',null)">
+              <div class="ts-icon nmp">N</div>
+              <div class="ts-info">
+                <span class="ts-name">NMAP</span>
+                <span class="ts-desc">Network discovery & port scanner</span>
+              </div>
+              <div class="ts-right">
+                <div class="ts-status idle">○ IDLE</div>
+                <div class="ts-meta">Last: 14:31 · 254 hosts</div>
+              </div>
+            </div>
+            <div class="tool-status-card" onclick="navigate('metasploit',null)">
+              <div class="ts-icon meta">M</div>
+              <div class="ts-info">
+                <span class="ts-name">METASPLOIT</span>
+                <span class="ts-desc">Exploitation framework</span>
+              </div>
+              <div class="ts-right">
+                <div class="ts-status running">● RUNNING</div>
+                <div class="ts-meta">1 active session</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE: TOOLS -->
+    <section class="dash-section" id="section-tools">
+      <div class="section-header">
+        <div>
+          <h1 class="section-title">SECURITY TOOLS</h1>
+          <p class="section-sub">Select a tool to launch or configure</p>
+        </div>
+      </div>
+      <div class="tools-grid">
+        <div class="tool-card" onclick="navigate('burpsuite',null)">
+          <div class="tc-header">
+            <div class="tc-icon burp">B</div>
+            <div class="tc-status-pill running">RUNNING</div>
+          </div>
+          <h3 class="tc-name">BURP SUITE</h3>
+          <p class="tc-desc">Intercept, replay, and scan web application traffic. Find SQL injection, XSS, CSRF, and more.</p>
+          <div class="tc-tags">
+            <span class="tag">WEB APP</span><span class="tag">PROXY</span><span class="tag">SCANNER</span>
+          </div>
+          <div class="tc-footer">
+            <span class="tc-findings"><span class="num red">12</span> FINDINGS</span>
+            <button class="btn-tool">LAUNCH →</button>
+          </div>
+        </div>
+
+        <div class="tool-card" onclick="navigate('wireshark',null)">
+          <div class="tc-header">
+            <div class="tc-icon wire">W</div>
+            <div class="tc-status-pill running">RUNNING</div>
+          </div>
+          <h3 class="tc-name">WIRESHARK</h3>
+          <p class="tc-desc">Capture and analyze network packets in real-time. Monitor protocols, detect anomalies, inspect traffic.</p>
+          <div class="tc-tags">
+            <span class="tag">NETWORK</span><span class="tag">PACKETS</span><span class="tag">MONITOR</span>
+          </div>
+          <div class="tc-footer">
+            <span class="tc-findings"><span class="num amber">4.2k</span> PACKETS</span>
+            <button class="btn-tool">LAUNCH →</button>
+          </div>
+        </div>
+
+        <div class="tool-card" onclick="navigate('nmap',null)">
+          <div class="tc-header">
+            <div class="tc-icon nmp">N</div>
+            <div class="tc-status-pill idle">IDLE</div>
+          </div>
+          <h3 class="tc-name">NMAP</h3>
+          <p class="tc-desc">Discover hosts and services on a network. Port scanning, OS detection, version detection, scripting engine.</p>
+          <div class="tc-tags">
+            <span class="tag">RECON</span><span class="tag">PORTS</span><span class="tag">DISCOVERY</span>
+          </div>
+          <div class="tc-footer">
+            <span class="tc-findings"><span class="num green">254</span> HOSTS</span>
+            <button class="btn-tool">LAUNCH →</button>
+          </div>
+        </div>
+
+        <div class="tool-card" onclick="navigate('metasploit',null)">
+          <div class="tc-header">
+            <div class="tc-icon meta">M</div>
+            <div class="tc-status-pill running">RUNNING</div>
+          </div>
+          <h3 class="tc-name">METASPLOIT</h3>
+          <p class="tc-desc">Advanced exploitation framework. Payloads, listeners, post-exploitation modules, and session management.</p>
+          <div class="tc-tags">
+            <span class="tag">EXPLOIT</span><span class="tag">PAYLOAD</span><span class="tag">SESSION</span>
+          </div>
+          <div class="tc-footer">
+            <span class="tc-findings"><span class="num red">1</span> SESSION</span>
+            <button class="btn-tool">LAUNCH →</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE: BURP SUITE -->
+    <section class="dash-section" id="section-burpsuite">
+      <div class="section-header">
+        <div class="sh-left">
+          <div class="tool-badge burp">B</div>
+          <div>
+            <h1 class="section-title">BURP SUITE</h1>
+            <p class="section-sub">Web Application Security Testing · Port 8080 · Running</p>
+          </div>
+        </div>
+        <div class="sh-actions">
+          <button class="btn-outline" id="burp-proxy-toggle" onclick="toggleProxy()">PROXY: ON</button>
+          <button class="btn-primary sm">NEW SCAN</button>
+        </div>
+      </div>
+
+      <div class="tool-tabs">
+        <button class="tool-tab active" onclick="switchToolTab('burp','intercept',this)">INTERCEPT</button>
+        <button class="tool-tab" onclick="switchToolTab('burp','scanner',this)">SCANNER</button>
+        <button class="tool-tab" onclick="switchToolTab('burp','repeater',this)">REPEATER</button>
+        <button class="tool-tab" onclick="switchToolTab('burp','history',this)">HTTP HISTORY</button>
+      </div>
+
+      <!-- Intercept Tab -->
+      <div class="tool-panel active" id="burp-intercept">
+        <div class="two-col">
+          <div class="dash-card full-h">
+            <div class="card-header">
+              <span class="card-title">INTERCEPTED REQUEST</span>
+              <div class="card-actions">
+                <button class="btn-tool sm green" onclick="burpForward()">FORWARD</button>
+                <button class="btn-tool sm red" onclick="burpDrop()">DROP</button>
+              </div>
+            </div>
+            <textarea class="code-editor" id="burp-request" spellcheck="false">POST /api/v1/login HTTP/1.1
+Host: target.example.com
+Content-Type: application/json
+Authorization: Bearer eyJ0eXAi...
+User-Agent: Mozilla/5.0 (X11; Linux x86_64)
+Content-Length: 47
+
+{"username":"admin","password":"test1234"}</textarea>
+          </div>
+          <div class="dash-card full-h">
+            <div class="card-header">
+              <span class="card-title">RESPONSE</span>
+              <div class="card-actions">
+                <span class="status-code ok">200 OK</span>
+              </div>
+            </div>
+            <textarea class="code-editor" id="burp-response" spellcheck="false">HTTP/1.1 200 OK
+Content-Type: application/json
+X-Frame-Options: DENY
+X-Content-Type-Options: nosniff
+Set-Cookie: session=abc123; HttpOnly; Secure
+
+{
+  "status": "success",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "user": {"id": 1, "role": "admin"},
+  "expires_in": 3600
+}</textarea>
+          </div>
+        </div>
+      </div>
+
+      <!-- Scanner Tab -->
+      <div class="tool-panel" id="burp-scanner">
+        <div class="dash-card" style="margin-bottom:16px">
+          <div class="card-header"><span class="card-title">SCAN CONFIGURATION</span></div>
+          <div class="scan-config-row">
+            <div class="form-group inline">
+              <label class="form-label">TARGET URL</label>
+              <div class="input-wrapper"><span class="input-icon">◈</span><input type="text" class="form-input" value="https://target.example.com" id="burp-scan-url"/></div>
+            </div>
+            <div class="form-group inline sm">
+              <label class="form-label">SCAN TYPE</label>
+              <select class="form-select"><option>ACTIVE SCAN</option><option>PASSIVE SCAN</option><option>CRAWL ONLY</option></select>
+            </div>
+            <button class="btn-primary" onclick="startBurpScan()">START SCAN</button>
+          </div>
+        </div>
+        <div class="dash-card">
+          <div class="card-header"><span class="card-title">FINDINGS</span><span class="card-badge">12</span></div>
+          <table class="data-table">
+            <thead><tr><th>SEVERITY</th><th>ISSUE TYPE</th><th>URL</th><th>CONFIDENCE</th><th>ACTION</th></tr></thead>
+            <tbody>
+              <tr><td><span class="sev crit">CRITICAL</span></td><td>SQL Injection</td><td>/api/users?id=</td><td>CERTAIN</td><td><button class="btn-xs">VIEW</button></td></tr>
+              <tr><td><span class="sev high">HIGH</span></td><td>Stored XSS</td><td>/comments/post</td><td>FIRM</td><td><button class="btn-xs">VIEW</button></td></tr>
+              <tr><td><span class="sev high">HIGH</span></td><td>CSRF Token Missing</td><td>/account/update</td><td>CERTAIN</td><td><button class="btn-xs">VIEW</button></td></tr>
+              <tr><td><span class="sev med">MEDIUM</span></td><td>Directory Traversal</td><td>/files?path=</td><td>FIRM</td><td><button class="btn-xs">VIEW</button></td></tr>
+              <tr><td><span class="sev med">MEDIUM</span></td><td>IDOR Vulnerability</td><td>/api/profile/42</td><td>TENTATIVE</td><td><button class="btn-xs">VIEW</button></td></tr>
+              <tr><td><span class="sev low">LOW</span></td><td>Missing Security Headers</td><td>/*</td><td>CERTAIN</td><td><button class="btn-xs">VIEW</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Repeater Tab -->
+      <div class="tool-panel" id="burp-repeater">
+        <div class="two-col">
+          <div class="dash-card full-h">
+            <div class="card-header">
+              <span class="card-title">REQUEST</span>
+              <button class="btn-primary sm" onclick="sendRepeater()">SEND ▶</button>
+            </div>
+            <textarea class="code-editor" spellcheck="false">GET /api/admin/users HTTP/1.1
+Host: target.example.com
+Authorization: Bearer REPLACE_TOKEN_HERE
+Accept: application/json</textarea>
+          </div>
+          <div class="dash-card full-h">
+            <div class="card-header"><span class="card-title">RESPONSE</span></div>
+            <div class="code-editor readonly" id="repeater-response"><!-- Response will appear here after Send --><span class="muted">Click SEND to get response...</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HTTP History Tab -->
+      <div class="tool-panel" id="burp-history">
+        <div class="dash-card">
+          <div class="card-header"><span class="card-title">HTTP HISTORY</span><span class="card-badge">1,247</span></div>
+          <table class="data-table">
+            <thead><tr><th>#</th><th>METHOD</th><th>URL</th><th>STATUS</th><th>LENGTH</th><th>TIME</th></tr></thead>
+            <tbody>
+              <tr><td class="muted">1247</td><td><span class="method post">POST</span></td><td>/api/v1/login</td><td><span class="status-code ok">200</span></td><td>842 B</td><td>14:32:01</td></tr>
+              <tr><td class="muted">1246</td><td><span class="method get">GET</span></td><td>/api/admin/users</td><td><span class="status-code err">403</span></td><td>124 B</td><td>14:31:58</td></tr>
+              <tr><td class="muted">1245</td><td><span class="method get">GET</span></td><td>/api/users?id=1 OR 1=1</td><td><span class="status-code ok">200</span></td><td>12.4 KB</td><td>14:31:45</td></tr>
+              <tr><td class="muted">1244</td><td><span class="method put">PUT</span></td><td>/api/profile/42</td><td><span class="status-code warn">401</span></td><td>88 B</td><td>14:31:30</td></tr>
+              <tr><td class="muted">1243</td><td><span class="method delete">DEL</span></td><td>/api/comments/7</td><td><span class="status-code ok">204</span></td><td>0 B</td><td>14:31:10</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE: WIRESHARK -->
+    <section class="dash-section" id="section-wireshark">
+      <div class="section-header">
+        <div class="sh-left">
+          <div class="tool-badge wire">W</div>
+          <div>
+            <h1 class="section-title">WIRESHARK</h1>
+            <p class="section-sub">Packet Capture · Interface: eth0 · 4,218 packets</p>
+          </div>
+        </div>
+        <div class="sh-actions">
+          <button class="btn-outline" id="wire-capture-btn" onclick="toggleCapture()">⏹ STOP CAPTURE</button>
+          <button class="btn-primary sm">SAVE .PCAP</button>
+        </div>
+      </div>
+
+      <div class="tool-tabs">
+        <button class="tool-tab active" onclick="switchToolTab('wire','packets',this)">PACKET LIST</button>
+        <button class="tool-tab" onclick="switchToolTab('wire','filter',this)">FILTERS</button>
+        <button class="tool-tab" onclick="switchToolTab('wire','stats',this)">STATISTICS</button>
+      </div>
+
+      <div class="tool-panel active" id="wire-packets">
+        <div class="dash-card" style="margin-bottom:12px">
+          <div class="wire-filter-bar">
+            <span class="input-icon">⌕</span>
+            <input type="text" class="filter-input" placeholder="Apply display filter... (e.g. tcp.port == 80 || http)" id="wire-filter"/>
+            <button class="btn-tool sm" onclick="applyWireFilter()">APPLY</button>
+            <button class="btn-tool sm" onclick="clearWireFilter()">CLEAR</button>
+          </div>
+        </div>
+        <div class="dash-card">
+          <div class="card-header"><span class="card-title">CAPTURED PACKETS</span><span class="live-badge">● LIVE</span></div>
+          <table class="data-table packet-table">
+            <thead><tr><th>NO.</th><th>TIME</th><th>SOURCE</th><th>DESTINATION</th><th>PROTOCOL</th><th>LENGTH</th><th>INFO</th></tr></thead>
+            <tbody id="packet-list">
+              <tr class="pkt-row" data-proto="HTTP"><td class="muted">4218</td><td>0.000</td><td>192.168.1.104</td><td>93.184.216.34</td><td><span class="proto http">HTTP</span></td><td>1024</td><td>GET /index.html HTTP/1.1</td></tr>
+              <tr class="pkt-row" data-proto="TCP"><td class="muted">4217</td><td>0.002</td><td>10.0.0.23</td><td>192.168.1.1</td><td><span class="proto tcp">TCP</span></td><td>74</td><td>SYN → Port 443</td></tr>
+              <tr class="pkt-row" data-proto="DNS"><td class="muted">4216</td><td>0.005</td><td>192.168.1.100</td><td>8.8.8.8</td><td><span class="proto dns">DNS</span></td><td>83</td><td>Standard query A cyberlabx.io</td></tr>
+              <tr class="pkt-row" data-proto="TLS"><td class="muted">4215</td><td>0.009</td><td>10.0.0.45</td><td>93.184.216.34</td><td><span class="proto tls">TLS</span></td><td>517</td><td>Client Hello</td></tr>
+              <tr class="pkt-row" data-proto="ARP"><td class="muted">4214</td><td>0.012</td><td>ff:ff:ff:ff</td><td>broadcast</td><td><span class="proto arp">ARP</span></td><td>42</td><td>Who has 192.168.1.1?</td></tr>
+              <tr class="pkt-row" data-proto="ICMP"><td class="muted">4213</td><td>0.018</td><td>10.0.0.1</td><td>10.0.0.45</td><td><span class="proto icmp">ICMP</span></td><td>98</td><td>Echo (ping) request</td></tr>
+              <tr class="pkt-row" data-proto="HTTP"><td class="muted">4212</td><td>0.022</td><td>192.168.1.104</td><td>93.184.216.34</td><td><span class="proto http">HTTP</span></td><td>480</td><td>POST /api/login HTTP/1.1</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="dash-card" style="margin-top:12px">
+          <div class="card-header"><span class="card-title">PACKET DETAILS</span></div>
+          <div class="packet-detail">
+            <div class="pd-section">
+              <span class="pd-label">▶ Frame 4218: 1024 bytes on wire</span>
+            </div>
+            <div class="pd-section">
+              <span class="pd-label">▶ Ethernet II, Src: aa:bb:cc:dd:ee:ff, Dst: 11:22:33:44:55:66</span>
+            </div>
+            <div class="pd-section expanded">
+              <span class="pd-label">▼ Internet Protocol Version 4</span>
+              <div class="pd-child">Source: 192.168.1.104</div>
+              <div class="pd-child">Destination: 93.184.216.34</div>
+              <div class="pd-child">Protocol: TCP (6)</div>
+              <div class="pd-child">TTL: 64</div>
+            </div>
+            <div class="pd-section">
+              <span class="pd-label">▶ Transmission Control Protocol, Src Port: 54821, Dst Port: 80</span>
+            </div>
+            <div class="pd-section">
+              <span class="pd-label">▶ Hypertext Transfer Protocol</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tool-panel" id="wire-filter">
+        <div class="dash-card">
+          <div class="card-header"><span class="card-title">CAPTURE FILTERS</span></div>
+          <div class="filter-list">
+            <div class="filter-item" onclick="applyPresetFilter('tcp port 80 or tcp port 443')">
+              <span class="fi-name">HTTP/HTTPS Traffic</span>
+              <code class="fi-code">tcp port 80 or tcp port 443</code>
+              <button class="btn-xs">APPLY</button>
+            </div>
+            <div class="filter-item" onclick="applyPresetFilter('icmp')">
+              <span class="fi-name">ICMP Only</span>
+              <code class="fi-code">icmp</code>
+              <button class="btn-xs">APPLY</button>
+            </div>
+            <div class="filter-item" onclick="applyPresetFilter('not arp and not icmp')">
+              <span class="fi-name">Exclude ARP/ICMP</span>
+              <code class="fi-code">not arp and not icmp</code>
+              <button class="btn-xs">APPLY</button>
+            </div>
+            <div class="filter-item" onclick="applyPresetFilter('host 192.168.1.104')">
+              <span class="fi-name">Specific Host</span>
+              <code class="fi-code">host 192.168.1.104</code>
+              <button class="btn-xs">APPLY</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tool-panel" id="wire-stats">
+        <div class="stat-grid">
+          <div class="stat-card"><div class="stat-icon blue">◈</div><div class="stat-info"><span class="stat-number">4218</span><span class="stat-label">TOTAL PACKETS</span></div></div>
+          <div class="stat-card"><div class="stat-icon green">↓</div><div class="stat-info"><span class="stat-number">2.4 MB</span><span class="stat-label">DATA CAPTURED</span></div></div>
+          <div class="stat-card"><div class="stat-icon amber">◉</div><div class="stat-info"><span class="stat-number">12</span><span class="stat-label">UNIQUE HOSTS</span></div></div>
+          <div class="stat-card"><div class="stat-icon red">⚠</div><div class="stat-info"><span class="stat-number">3</span><span class="stat-label">ANOMALIES</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE: NMAP -->
+    <section class="dash-section" id="section-nmap">
+      <div class="section-header">
+        <div class="sh-left">
+          <div class="tool-badge nmp">N</div>
+          <div>
+            <h1 class="section-title">NMAP</h1>
+            <p class="section-sub">Network Mapper · Reconnaissance & Port Scanning</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="dash-card" style="margin-bottom:16px">
+        <div class="card-header"><span class="card-title">SCAN CONFIGURATION</span></div>
+        <div class="nmap-config">
+          <div class="form-group">
+            <label class="form-label">TARGET (IP / CIDR / Hostname)</label>
+            <div class="input-wrapper"><span class="input-icon">◈</span><input type="text" class="form-input" value="192.168.1.0/24" id="nmap-target"/></div>
+          </div>
+          <div class="nmap-options">
+            <div class="form-group sm">
+              <label class="form-label">SCAN TYPE</label>
+              <select class="form-select" id="nmap-type">
+                <option value="-sS">SYN SCAN (-sS)</option>
+                <option value="-sT">TCP CONNECT (-sT)</option>
+                <option value="-sU">UDP SCAN (-sU)</option>
+                <option value="-sA">ACK SCAN (-sA)</option>
+              </select>
+            </div>
+            <div class="form-group sm">
+              <label class="form-label">TIMING</label>
+              <select class="form-select" id="nmap-timing">
+                <option>T0 - PARANOID</option>
+                <option>T1 - SNEAKY</option>
+                <option>T2 - POLITE</option>
+                <option selected>T3 - NORMAL</option>
+                <option>T4 - AGGRESSIVE</option>
+                <option>T5 - INSANE</option>
+              </select>
+            </div>
+          </div>
+          <div class="nmap-flags">
+            <label class="checkbox-label"><input type="checkbox" checked/><span class="checkbox-custom"></span>OS DETECTION (-O)</label>
+            <label class="checkbox-label"><input type="checkbox" checked/><span class="checkbox-custom"></span>VERSION DETECTION (-sV)</label>
+            <label class="checkbox-label"><input type="checkbox"/><span class="checkbox-custom"></span>SCRIPT SCAN (-sC)</label>
+            <label class="checkbox-label"><input type="checkbox"/><span class="checkbox-custom"></span>AGGRESSIVE (-A)</label>
+          </div>
+          <div class="nmap-cmd-preview">
+            <span class="muted">COMMAND:</span>
+            <code id="nmap-cmd">nmap -sS -O -sV -T3 192.168.1.0/24</code>
+          </div>
+          <button class="btn-primary" onclick="startNmapScan()">▶ RUN SCAN</button>
+        </div>
+      </div>
+
+      <div class="dash-card">
+        <div class="card-header"><span class="card-title">SCAN RESULTS</span><span class="card-badge">254 HOSTS</span></div>
+        <table class="data-table">
+          <thead><tr><th>HOST</th><th>STATUS</th><th>OS</th><th>OPEN PORTS</th><th>SERVICES</th><th>ACTION</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>192.168.1.1</td>
+              <td><span class="host-status up">UP</span></td>
+              <td>Linux 4.x</td>
+              <td>22, 80, 443, 8080</td>
+              <td>SSH, HTTP, HTTPS, Proxy</td>
+              <td><button class="btn-xs">DETAILS</button></td>
+            </tr>
+            <tr>
+              <td>192.168.1.100</td>
+              <td><span class="host-status up">UP</span></td>
+              <td>Windows 10</td>
+              <td>135, 139, 445, 3389</td>
+              <td>RPC, NetBIOS, SMB, RDP</td>
+              <td><button class="btn-xs">DETAILS</button></td>
+            </tr>
+            <tr>
+              <td>192.168.1.104</td>
+              <td><span class="host-status up">UP</span></td>
+              <td>Ubuntu 22.04</td>
+              <td>22, 3000, 5432</td>
+              <td>SSH, Node.js, PostgreSQL</td>
+              <td><button class="btn-xs">DETAILS</button></td>
+            </tr>
+            <tr>
+              <td>192.168.1.150</td>
+              <td><span class="host-status down">DOWN</span></td>
+              <td>Unknown</td>
+              <td>—</td>
+              <td>—</td>
+              <td><button class="btn-xs">DETAILS</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- PAGE: METASPLOIT -->
+    <section class="dash-section" id="section-metasploit">
+      <div class="section-header">
+        <div class="sh-left">
+          <div class="tool-badge meta">M</div>
+          <div>
+            <h1 class="section-title">METASPLOIT</h1>
+            <p class="section-sub">Exploitation Framework · 1 Active Session</p>
+          </div>
+        </div>
+        <div class="sh-actions">
+          <button class="btn-outline">DATABASE: CONNECTED</button>
+          <button class="btn-primary sm" onclick="openMsfConsole()">OPEN MSFCONSOLE</button>
+        </div>
+      </div>
+
+      <div class="tool-tabs">
+        <button class="tool-tab active" onclick="switchToolTab('meta','console',this)">CONSOLE</button>
+        <button class="tool-tab" onclick="switchToolTab('meta','modules',this)">MODULES</button>
+        <button class="tool-tab" onclick="switchToolTab('meta','sessions',this)">SESSIONS</button>
+      </div>
+
+      <div class="tool-panel active" id="meta-console">
+        <div class="dash-card">
+          <div class="card-header"><span class="card-title">MSF CONSOLE</span><span class="live-badge">● ACTIVE</span></div>
+          <div class="msf-terminal" id="msf-terminal">
+            <div class="msf-banner">
+              <pre class="msf-art">
+  ______      __                               __ 
+ /      \    /  |                             /  |
+/$$$$$$  | _$$ |_    ____    ______   ______  $$ |
+$$ |  $$ |/ $$   |  /    \  /      \ /      \ $$ |
+$$ |  $$ |$$$$$$/  /$$$$$$|/$$$$$$  |$$$$$$  |$$ |
+$$ |  $$ |  $$ | __$$ |  $$/$$ |  $$ |/    $$ |$$ |
+$$ \__$$ |  $$ |/  |$$ \__$$/$$ \__$$ /$$$$$$$ |$$ |_____ 
+$$    $$/   $$  $$/ $$    $$|$$    $$/$$    $$ |$$       |
+ $$$$$$/     $$$$/   $$$$$$/  $$$$$$/  $$$$$$$/ $$$$$$$$/</pre>
+              <div class="msf-version">Metasploit v6.3.44-dev · 2377 exploits · 1234 payloads · 45 sessions</div>
+            </div>
+            <div class="msf-output" id="msf-output">
+              <div><span class="msf-prompt">msf6 &gt;</span> use exploit/windows/smb/ms17_010_eternalblue</div>
+              <div><span class="msf-prompt">msf6 exploit(ms17_010_eternalblue) &gt;</span> set RHOSTS 192.168.1.100</div>
+              <div class="msf-result">RHOSTS =&gt; 192.168.1.100</div>
+              <div><span class="msf-prompt">msf6 exploit(ms17_010_eternalblue) &gt;</span> set LHOST 192.168.1.104</div>
+              <div class="msf-result">LHOST =&gt; 192.168.1.104</div>
+              <div><span class="msf-prompt">msf6 exploit(ms17_010_eternalblue) &gt;</span> run</div>
+              <div class="msf-result success">[*] Started reverse TCP handler on 192.168.1.104:4444</div>
+              <div class="msf-result success">[+] 192.168.1.100:445 - =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=</div>
+              <div class="msf-result success">[+] Session 1 opened (192.168.1.104:4444 → 192.168.1.100:49352)</div>
+            </div>
+            <div class="msf-input-row">
+              <span class="msf-prompt">msf6 &gt;</span>
+              <input type="text" class="msf-input" id="msf-input" placeholder="Enter MSF command..."/>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tool-panel" id="meta-modules">
+        <div class="dash-card">
+          <div class="card-header">
+            <span class="card-title">MODULE BROWSER</span>
+            <div class="input-wrapper sm"><span class="input-icon">⌕</span><input type="text" class="form-input" placeholder="Search modules..."/></div>
+          </div>
+          <table class="data-table">
+            <thead><tr><th>TYPE</th><th>NAME</th><th>RANK</th><th>DESCRIPTION</th><th>USE</th></tr></thead>
+            <tbody>
+              <tr><td><span class="mod-type exploit">EXPLOIT</span></td><td>ms17_010_eternalblue</td><td><span class="rank exc">EXCELLENT</span></td><td>EternalBlue SMBv1 Exploit (MS17-010)</td><td><button class="btn-xs">USE</button></td></tr>
+              <tr><td><span class="mod-type exploit">EXPLOIT</span></td><td>apache_struts2_rest_xstream</td><td><span class="rank grt">GREAT</span></td><td>Apache Struts 2 REST XStream RCE</td><td><button class="btn-xs">USE</button></td></tr>
+              <tr><td><span class="mod-type payload">PAYLOAD</span></td><td>windows/meterpreter/reverse_tcp</td><td><span class="rank nor">NORMAL</span></td><td>Windows Meterpreter Shell Reverse TCP</td><td><button class="btn-xs">USE</button></td></tr>
+              <tr><td><span class="mod-type aux">AUXILIARY</span></td><td>scanner/smb/smb_ms17_010</td><td><span class="rank nor">NORMAL</span></td><td>MS17-010 EternalBlue SMB RCE Detection</td><td><button class="btn-xs">USE</button></td></tr>
+              <tr><td><span class="mod-type post">POST</span></td><td>windows/gather/credentials/credential_collector</td><td><span class="rank nor">NORMAL</span></td><td>Gather Credentials from Windows Target</td><td><button class="btn-xs">USE</button></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="tool-panel" id="meta-sessions">
+        <div class="dash-card">
+          <div class="card-header"><span class="card-title">ACTIVE SESSIONS</span><span class="live-badge">1 ACTIVE</span></div>
+          <table class="data-table">
+            <thead><tr><th>ID</th><th>TYPE</th><th>TUNNEL</th><th>TARGET</th><th>VIA MODULE</th><th>OPENED</th><th>ACTIONS</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td><span class="sev med">METERPRETER</span></td>
+                <td>TCP</td>
+                <td>192.168.1.100:49352</td>
+                <td>ms17_010_eternalblue</td>
+                <td>14:30:22</td>
+                <td>
+                  <button class="btn-xs green">INTERACT</button>
+                  <button class="btn-xs red">KILL</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAGE: REPORTS -->
+    <section class="dash-section" id="section-reports">
+      <div class="section-header">
+        <div><h1 class="section-title">REPORTS</h1><p class="section-sub">Vulnerability reports and scan summaries</p></div>
+        <button class="btn-primary sm">+ GENERATE REPORT</button>
+      </div>
+      <div class="dash-card">
+        <div class="card-header"><span class="card-title">REPORT HISTORY</span></div>
+        <table class="data-table">
+          <thead><tr><th>NAME</th><th>TYPE</th><th>DATE</th><th>FINDINGS</th><th>STATUS</th><th>ACTIONS</th></tr></thead>
+          <tbody>
+            <tr>
+              <td>Web App Pentest — target.example.com</td>
+              <td>PENTEST</td>
+              <td>Dec 15, 2024</td>
+              <td><span class="num red">12</span> findings</td>
+              <td><span class="ts-status running">FINAL</span></td>
+              <td><button class="btn-xs">PDF</button><button class="btn-xs">VIEW</button></td>
+            </tr>
+            <tr>
+              <td>Internal Network Scan — 10.0.0.0/24</td>
+              <td>NMAP</td>
+              <td>Dec 14, 2024</td>
+              <td><span class="num amber">8</span> findings</td>
+              <td><span class="ts-status running">FINAL</span></td>
+              <td><button class="btn-xs">PDF</button><button class="btn-xs">VIEW</button></td>
+            </tr>
+            <tr>
+              <td>Windows SMB Vulnerability Assessment</td>
+              <td>METASPLOIT</td>
+              <td>Dec 12, 2024</td>
+              <td><span class="num red">3</span> findings</td>
+              <td><span class="ts-status idle">DRAFT</span></td>
+              <td><button class="btn-xs">PDF</button><button class="btn-xs">VIEW</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- PAGE: SESSIONS -->
+    <section class="dash-section" id="section-sessions">
+      <div class="section-header">
+        <div><h1 class="section-title">SESSIONS</h1><p class="section-sub">Active operator sessions and history</p></div>
+      </div>
+      <div class="stat-grid" style="margin-bottom:24px">
+        <div class="stat-card"><div class="stat-icon green">◉</div><div class="stat-info"><span class="stat-number">7</span><span class="stat-label">ACTIVE SESSIONS</span></div></div>
+        <div class="stat-card"><div class="stat-icon blue">◈</div><div class="stat-info"><span class="stat-number">3</span><span class="stat-label">UNIQUE OPERATORS</span></div></div>
+        <div class="stat-card"><div class="stat-icon amber">⚠</div><div class="stat-info"><span class="stat-number">1</span><span class="stat-label">SUSPICIOUS LOGINS</span></div></div>
+      </div>
+      <div class="dash-card">
+        <div class="card-header"><span class="card-title">SESSION LOG</span></div>
+        <table class="data-table">
+          <thead><tr><th>OPERATOR</th><th>IP ADDRESS</th><th>LOCATION</th><th>STARTED</th><th>LAST ACTIVE</th><th>STATUS</th><th>ACTION</th></tr></thead>
+          <tbody>
+            <tr><td>gh0st_op3r</td><td>45.33.32.156</td><td>Mumbai, IN</td><td>12:18:04</td><td>Now</td><td><span class="ts-status running">ACTIVE</span></td><td><button class="btn-xs">YOU</button></td></tr>
+            <tr><td>r3d_t34m</td><td>74.125.224.72</td><td>London, UK</td><td>11:45:00</td><td>2 min ago</td><td><span class="ts-status running">ACTIVE</span></td><td><button class="btn-xs red">REVOKE</button></td></tr>
+            <tr><td>bl4ck_h4t</td><td>185.220.101.45</td><td>Unknown</td><td>13:59:12</td><td>1 min ago</td><td><span class="ts-status" style="color:#f00">SUSPICIOUS</span></td><td><button class="btn-xs red">TERMINATE</button></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- PAGE: SETTINGS -->
+    <section class="dash-section" id="section-settings">
+      <div class="section-header">
+        <div><h1 class="section-title">SETTINGS</h1><p class="section-sub">Account, security & platform configuration</p></div>
+        <button class="btn-primary sm" onclick="saveSettings()">SAVE CHANGES</button>
+      </div>
+      <div class="settings-grid">
+        <div class="dash-card">
+          <div class="card-header"><span class="card-title">PROFILE</span></div>
+          <div class="settings-avatar-row">
+            <div class="settings-avatar">GH</div>
+            <div>
+              <div class="user-name" style="font-size:18px">gh0st_op3r</div>
+              <div class="user-role">RED TEAM ANALYST</div>
+              <button class="btn-outline sm" style="margin-top:8px">CHANGE AVATAR</button>
+            </div>
+          </div>
+          <div class="form-group"><label class="form-label">DISPLAY NAME</label><div class="input-wrapper"><span class="input-icon">▸</span><input type="text" class="form-input" value="gh0st_op3r"/></div></div>
+          <div class="form-group"><label class="form-label">EMAIL</label><div class="input-wrapper"><span class="input-icon">◈</span><input type="email" class="form-input" value="operator@cyberlabx.io"/></div></div>
+          <div class="form-group"><label class="form-label">BIO</label><textarea class="form-input" rows="3" style="height:auto;padding:12px">Red team operator · CTF enthusiast · OSCP certified</textarea></div>
+        </div>
+
+        <div class="dash-card">
+          <div class="card-header"><span class="card-title">SECURITY</span></div>
+          <div class="form-group"><label class="form-label">CURRENT PASSWORD</label><div class="input-wrapper"><span class="input-icon">◉</span><input type="password" class="form-input" placeholder="••••••••"/></div></div>
+          <div class="form-group"><label class="form-label">NEW PASSWORD</label><div class="input-wrapper"><span class="input-icon">◉</span><input type="password" class="form-input" placeholder="••••••••"/></div></div>
+          <div class="form-group"><label class="form-label">CONFIRM PASSWORD</label><div class="input-wrapper"><span class="input-icon">◉</span><input type="password" class="form-input" placeholder="••••••••"/></div></div>
+          <div class="settings-toggle-row">
+            <div><span class="form-label">TWO-FACTOR AUTH (2FA)</span><p class="setting-desc">TOTP authenticator app required on login</p></div>
+            <div class="toggle active" onclick="this.classList.toggle('active')"><div class="toggle-knob"></div></div>
+          </div>
+          <div class="settings-toggle-row">
+            <div><span class="form-label">SESSION NOTIFICATIONS</span><p class="setting-desc">Email alerts on new login</p></div>
+            <div class="toggle active" onclick="this.classList.toggle('active')"><div class="toggle-knob"></div></div>
+          </div>
+          <button class="btn-primary" style="margin-top:12px">UPDATE PASSWORD</button>
+        </div>
+
+        <div class="dash-card">
+          <div class="card-header"><span class="card-title">API KEYS</span></div>
+          <div class="api-key-row">
+            <div class="form-group" style="flex:1"><label class="form-label">YOUR API KEY</label><div class="input-wrapper"><span class="input-icon">◈</span><input type="password" class="form-input" value="clx_live_sk_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" id="api-key-val"/><button class="toggle-pass" onclick="togglePass('api-key-val',this)">SHOW</button></div></div>
+            <button class="btn-outline" style="align-self:flex-end" onclick="regenerateKey()">REGENERATE</button>
+          </div>
+          <p class="setting-desc" style="margin-top:8px">Use this key to authenticate API requests from external tools. Keep it secret.</p>
+        </div>
+
+        <div class="dash-card">
+          <div class="card-header"><span class="card-title">THEME & DISPLAY</span></div>
+          <div class="settings-toggle-row">
+            <div><span class="form-label">SCANLINE EFFECT</span><p class="setting-desc">CRT scanline overlay</p></div>
+            <div class="toggle active" onclick="this.classList.toggle('active');document.querySelector('.scan-line').style.display=this.classList.contains('active')?'block':'none'"><div class="toggle-knob"></div></div>
+          </div>
+          <div class="settings-toggle-row">
+            <div><span class="form-label">ANIMATIONS</span><p class="setting-desc">UI motion effects</p></div>
+            <div class="toggle active" onclick="this.classList.toggle('active')"><div class="toggle-knob"></div></div>
+          </div>
+          <div class="form-group" style="margin-top:16px">
+            <label class="form-label">ACCENT COLOR</label>
+            <div class="color-picker-row">
+              <div class="color-opt active" style="background:#00ff88" onclick="setAccent('#00ff88',this)"></div>
+              <div class="color-opt" style="background:#00bfff" onclick="setAccent('#00bfff',this)"></div>
+              <div class="color-opt" style="background:#ff6b35" onclick="setAccent('#ff6b35',this)"></div>
+              <div class="color-opt" style="background:#a855f7" onclick="setAccent('#a855f7',this)"></div>
+              <div class="color-opt" style="background:#f43f5e" onclick="setAccent('#f43f5e',this)"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- TOAST NOTIFICATIONS -->
+<div class="toast-container" id="toast-container"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
