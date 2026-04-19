@@ -1,0 +1,14 @@
+services:
+  cyberlabx:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: cyberlabx
+    ports:
+      - "3000:3000"
+    volumes:
+      - cyberlabx_data:/app/data
+    restart: unless-stopped
+
+volumes:
+  cyberlabx_data:
