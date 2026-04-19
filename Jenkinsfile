@@ -10,7 +10,7 @@ pipeline {
 
     stage('Smoke Check') {
       steps {
-        sh 'node --check server.js'
+        sh 'ENTRY_FILE=$(node -p "require(\'./package.json\').main || \'server.js\'") && node --check "$ENTRY_FILE"'
       }
     }
 
