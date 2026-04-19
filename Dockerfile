@@ -1,9 +1,9 @@
-FROM node:20-bookworm-slim
+FROM node:20.18.1-bookworm-slim
 
 WORKDIR /app
 
 COPY package*.json ./
-RUN if [ -f package-lock.json ]; then npm ci --omit=dev; else npm install --omit=dev; fi
+RUN npm install --omit=dev
 
 COPY . .
 
